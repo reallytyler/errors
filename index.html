@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Tyler — Projects</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=JetBrains+Mono:wght@400;700&display=swap');
+  :root{
+    --bg:#061017;
+    --card:#071a23;
+    --accent:#00f6c6;
+    --muted:#9beed6;
+  }
+  html,body{height:100%}
+  body{
+    margin:0;background:
+      radial-gradient(800px 400px at 10% 10%, rgba(0,246,198,0.03), transparent),
+      linear-gradient(180deg,#031018 0%, #061017 100%);
+    color:var(--muted);
+    font-family:"JetBrains Mono",monospace;
+    -webkit-font-smoothing:antialiased;
+  }
+  header{display:flex;align-items:center;gap:18px;padding:28px 36px}
+  .logo{width:64px;height:64px;background:linear-gradient(135deg,var(--accent),#6ff0ff);border-radius:10px;display:grid;place-items:center;font-family:"Orbitron",sans-serif;color:#041;}
+  h1{font-family:"Orbitron",sans-serif;font-size:22px;margin:0}
+  p.sub{margin:2px 0 0;font-size:13px;color:rgba(155,238,214,0.7)}
+
+  main{padding:20px 36px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:12px;padding:16px;border:1px solid rgba(255,255,255,0.03);
+    box-shadow:0 12px 40px rgba(0,0,0,0.6);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:0 30px 70px rgba(0,0,0,0.7)}
+  .card .title{font-weight:700;color:var(--accent);font-family:"Orbitron",sans-serif}
+  .card .desc{margin-top:8px;font-size:13px;color:rgba(191,255,240,0.9)}
+  .card .linkrow{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .link{padding:8px 10px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.03);cursor:pointer;font-weight:700}
+  .link.primary{background:linear-gradient(90deg,var(--accent),#68f3ff);color:#021; border:0}
+  .actions{display:flex;gap:10px;align-items:center;margin-left:auto}
+  footer{padding:22px 36px;color:rgba(155,238,214,0.5);font-size:13px}
+
+  .copyhint{font-size:12px;color:rgba(155,238,214,0.45)}
+  .topbar{display:flex;align-items:center;gap:12px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">TY</div>
+  <div>
+    <h1>Tyler — Projects</h1>
+    <p class="sub">A curated quick-launch dashboard. Click a project to open it in a new tab.</p>
+  </div>
+  <div style="margin-left:auto" class="actions">
+    <button class="link" onclick="copyAll()">Copy all links</button>
+    <button class="link primary" onclick="openAll()">Open all</button>
+  </div>
+</header>
+
+<main>
+  <div class="grid" id="grid">
+    <!-- Cards populated inline for your list -->
+    <div class="card">
+      <div class="title">Superly (modpack)</div>
+      <div class="desc">Modrinth modpack — Superly.</div>
+      <div class="linkrow">
+        <button class="link primary" onclick="openLink('https://modrinth.com/modpack/superly')">Open</button>
+        <button class="link" onclick="copyLink('https://modrinth.com/modpack/superly')">Copy</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title">Lumera (modpack)</div>
+      <div class="desc">Modrinth modpack — Lumera.</div>
+      <div class="linkrow">
+        <button class="link primary" onclick="openLink('https://modrinth.com/modpack/lumera')">Open</button>
+        <button class="link" onclick="copyLink('https://modrinth.com/modpack/lumera')">Copy</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title">CustomRanks (resourcepack)</div>
+      <div class="desc">Modrinth resource pack — customranks.</div>
+      <div class="linkrow">
+        <button class="link primary" onclick="openLink('https://modrinth.com/resourcepack/customranks')">Open</button>
+        <button class="link" onclick="copyLink('https://modrinth.com/resourcepack/customranks')">Copy</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title">discordrpc (project)</div>
+      <div class="desc">Modrinth project: discordrpc.</div>
+      <div class="linkrow">
+        <button class="link primary" onclick="openLink('https://modrinth.com/project/discordrpc')">Open</button>
+        <button class="link" onclick="copyLink('https://modrinth.com/project/discordrpc')">Copy</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title">discordbot (project)</div>
+      <div class="desc">Modrinth project: discordbot.</div>
+      <div class="linkrow">
+        <button class="link primary" onclick="openLink('https://modrinth.com/project/discordbot')">Open</button>
+        <button class="link" onclick="copyLink('https://modrinth.com/project/discordbot')">Copy</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title">classic-discord-rpc (github)</div>
+      <div class="desc">GitHub repo: classic-discord-rpc.</div>
+      <div class="linkrow">
+        <button class="link primary" onclick="openLink('https://github.com/reallytyler/classic-discord-rpc')">Open</button>
+        <button class="link" onclick="copyLink('https://github.com/reallytyler/classic-discord-rpc')">Copy</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title">errors (github)</div>
+      <div class="desc">GitHub repo: errors — this error pages repo.</div>
+      <div class="linkrow">
+        <button class="link primary" onclick="openLink('https://github.com/reallytyler/errors/')">Open</button>
+        <button class="link" onclick="copyLink('https://github.com/reallytyler/errors/')">Copy</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title">LoupClient (github)</div>
+      <div class="desc">GitHub repo: LoupClient.</div>
+      <div class="linkrow">
+        <button class="link primary" onclick="openLink('https://github.com/reallytyler/LoupClient')">Open</button>
+        <button class="link" onclick="copyLink('https://github.com/reallytyler/LoupClient')">Copy</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title">DiscordFONTS (github)</div>
+      <div class="desc">GitHub repo: DiscordFONTS.</div>
+      <div class="linkrow">
+        <button class="link primary" onclick="openLink('https://github.com/reallytyler/DiscordFONTS')">Open</button>
+        <button class="link" onclick="copyLink('https://github.com/reallytyler/DiscordFONTS')">Copy</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title">customranks (github)</div>
+      <div class="desc">GitHub repo: customranks.</div>
+      <div class="linkrow">
+        <button class="link primary" onclick="openLink('https://github.com/reallytyler/customranks')">Open</button>
+        <button class="link" onclick="copyLink('https://github.com/reallytyler/customranks')">Copy</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title">howtoget (github)</div>
+      <div class="desc">GitHub repo: howtoget.</div>
+      <div class="linkrow">
+        <button class="link primary" onclick="openLink('https://github.com/reallytyler/howtoget')">Open</button>
+        <button class="link" onclick="copyLink('https://github.com/reallytyler/howtoget')">Copy</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title">discord-say-bot (github)</div>
+      <div class="desc">GitHub repo: discord-say-bot.</div>
+      <div class="linkrow">
+        <button class="link primary" onclick="openLink('https://github.com/reallytyler/discord-say-bot')">Open</button>
+        <button class="link" onclick="copyLink('https://github.com/reallytyler/discord-say-bot')">Copy</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title">ProjectCloud (github)</div>
+      <div class="desc">GitHub repo: ProjectCloud.</div>
+      <div class="linkrow">
+        <button class="link primary" onclick="openLink('https://github.com/reallytyler/ProjectCloud')">Open</button>
+        <button class="link" onclick="copyLink('https://github.com/reallytyler/ProjectCloud')">Copy</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title">random-stuff.com (github)</div>
+      <div class="desc">GitHub repo: random-stuff.com.</div>
+      <div class="linkrow">
+        <button class="link primary" onclick="openLink('https://github.com/reallytyler/random-stuff.com')">Open</button>
+        <button class="link" onclick="copyLink('https://github.com/reallytyler/random-stuff.com')">Copy</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title">Discord-Nuke-Bot (github)</div>
+      <div class="desc">GitHub repo: Discord-Nuke-Bot.</div>
+      <div class="linkrow">
+        <button class="link primary" onclick="openLink('https://github.com/reallytyler/Discord-Nuke-Bot')">Open</button>
+        <button class="link" onclick="copyLink('https://github.com/reallytyler/Discord-Nuke-Bot')">Copy</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title">tyler.ct.ws (site)</div>
+      <div class="desc">Personal site / landing page.</div>
+      <div class="linkrow">
+        <button class="link primary" onclick="openLink('https://tyler.ct.ws/')">Open</button>
+        <button class="link" onclick="copyLink('https://tyler.ct.ws/')">Copy</button>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+    <div>Made with ⚙️ system vibes — Tyler</div>
+    <div class="copyhint" id="copied"></div>
+  </div>
+</footer>
+
+<script>
+  // helpers
+  function openLink(url){ window.open(url,'_blank'); }
+  function copyLink(url){
+    navigator.clipboard?.writeText(url).then(()=>{ flash('Copied!'); });
+  }
+  function flash(msg){
+    const el = document.getElementById('copied');
+    el.textContent = msg;
+    setTimeout(()=>el.textContent='',1200);
+  }
+  function copyAll(){
+    const links = [
+      'https://modrinth.com/modpack/superly',
+      'https://modrinth.com/modpack/lumera',
+      'https://modrinth.com/resourcepack/customranks',
+      'https://modrinth.com/project/discordrpc',
+      'https://modrinth.com/project/discordbot',
+      'https://github.com/reallytyler/classic-discord-rpc',
+      'https://github.com/reallytyler/errors/',
+      'https://github.com/reallytyler/LoupClient',
+      'https://github.com/reallytyler/DiscordFONTS',
+      'https://github.com/reallytyler/customranks',
+      'https://github.com/reallytyler/howtoget',
+      'https://github.com/reallytyler/discord-say-bot',
+      'https://github.com/reallytyler/ProjectCloud',
+      'https://github.com/reallytyler/random-stuff.com',
+      'https://github.com/reallytyler/Discord-Nuke-Bot',
+      'https://tyler.ct.ws/'
+    ];
+    navigator.clipboard?.writeText(links.join("\\n")).then(()=>flash('All links copied'));
+  }
+  function openAll(){
+    const links = [
+      'https://modrinth.com/modpack/superly',
+      'https://modrinth.com/modpack/lumera',
+      'https://modrinth.com/resourcepack/customranks',
+      'https://modrinth.com/project/discordrpc',
+      'https://modrinth.com/project/discordbot',
+      'https://github.com/reallytyler/classic-discord-rpc',
+      'https://github.com/reallytyler/errors/',
+      'https://github.com/reallytyler/LoupClient',
+      'https://github.com/reallytyler/DiscordFONTS',
+      'https://github.com/reallytyler/customranks',
+      'https://github.com/reallytyler/howtoget',
+      'https://github.com/reallytyler/discord-say-bot',
+      'https://github.com/reallytyler/ProjectCloud',
+      'https://github.com/reallytyler/random-stuff.com',
+      'https://github.com/reallytyler/Discord-Nuke-Bot',
+      'https://tyler.ct.ws/'
+    ];
+    // open each in new tab (user may have popup blocker)
+    links.forEach(u => window.open(u,'_blank'));
+  }
+</script>
+</body>
+</html>
