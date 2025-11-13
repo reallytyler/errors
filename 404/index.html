@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 Not Found</title>
+<style>
+  body {
+    background: #0d0d0d;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .glitch {
+    font-size: 6rem;
+    font-weight: 900;
+    position: relative;
+    color: #fff;
+  }
+  .glitch::before, .glitch::after {
+    content: "404";
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.8;
+  }
+  .glitch::before {
+    color: #f00;
+    transform: translate(-2px, 2px);
+    animation: glitch 0.3s infinite;
+  }
+  .glitch::after {
+    color: #0ff;
+    transform: translate(2px, -2px);
+    animation: glitch 0.3s infinite reverse;
+  }
+  @keyframes glitch {
+    0% { clip-path: inset(0 0 90% 0); }
+    20% { clip-path: inset(10% 0 80% 0); }
+    40% { clip-path: inset(40% 0 40% 0); }
+    60% { clip-path: inset(80% 0 10% 0); }
+    100% { clip-path: inset(0 0 90% 0); }
+  }
+  .text {
+    text-align: center;
+    max-width: 600px;
+  }
+  p {
+    color: #ccc;
+    margin-top: 20px;
+    font-size: 1.1rem;
+  }
+  button {
+    margin-top: 1.5rem;
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  button:hover { background: #0ff; color: #000; }
+</style>
+</head>
+<body>
+  <div class="text">
+    <div class="glitch">404</div>
+    <p>The page you were looking for could not be found!</p>
+    <p>If you just came across this page, please carry on.<br>
+       If you are the website owner, please try to troubleshoot.<br>
+       Please contact the system administrator for extra measures.</p>
+    <button onclick="window.location.href='/'">Return Home</button>
+  </div>
+</body>
+</html>
