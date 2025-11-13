@@ -1,64 +1,199 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>403 Forbidden</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>403 — Forbidden</title>
 <style>
-  body {
-    background-color: #020202;
-    color: #00ffc6;
+  /* fonts (inline import) */
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+  :root{
+    --bg:#030309;
+    --neon:#00f6c6;
+    --accent:#7afcff;
+    --muted:#9beed6;
+    --glass: rgba(255,255,255,0.03);
+  }
+  html,body{height:100%}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 10% 20%, rgba(0,246,198,0.06), transparent),
+      radial-gradient(800px 400px at 90% 80%, rgba(122,255,255,0.03), transparent),
+      var(--bg);
+    color:var(--muted);
     font-family: "JetBrains Mono", monospace;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    -webkit-font-smoothing:antialiased;
   }
-  .terminal {
-    background: rgba(0, 0, 0, 0.8);
-    border: 2px solid #00ffc6;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 15px #00ffc6;
-    width: 80%;
-    max-width: 600px;
+
+  .shell {
+    width: min(980px, 94%);
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border: 1px solid rgba(122,255,255,0.06);
+    border-radius:14px;
+    padding:28px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 40px rgba(0,246,198,0.03) inset;
+    position:relative;
+    overflow:hidden;
   }
-  h1 {
-    font-size: 3rem;
-    text-shadow: 0 0 10px #00ffc6;
+
+  /* header */
+  .topbar {
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:18px;
   }
-  p {
-    margin: 1rem 0;
+  .logo {
+    width:56px; height:56px; display:grid;place-items:center;
+    background:linear-gradient(135deg,var(--neon),#57e7ff);
+    border-radius:10px;
+    color:#021;
+    font-weight:900;
+    font-family: "Orbitron", sans-serif;
+    box-shadow: 0 6px 22px rgba(0,246,198,0.12), 0 0 12px rgba(90,240,210,0.08) inset;
+    transform: rotate(-6deg);
   }
-  .blink::after {
-    content: "_";
-    animation: blink 1s infinite;
+  .meta {
+    display:flex;flex-direction:column;
   }
-  @keyframes blink {
-    50% { opacity: 0; }
+  .meta .title {
+    font-family:"Orbitron",sans-serif;
+    color:var(--accent);
+    font-size:20px;
+    letter-spacing:1px;
   }
-  button {
-    margin-top: 1rem;
-    background: #00ffc6;
-    color: #000;
-    border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
+  .meta .sub { font-size:12px;color:rgba(155,238,214,0.75) }
+
+  .body {
+    display:flex;
+    gap:28px;
+    align-items:flex-start;
   }
-  button:hover { background: #00a582; }
+
+  .panel {
+    background:var(--glass);
+    border-radius:10px;
+    padding:18px;
+    flex:1;
+    border:1px solid rgba(122,255,255,0.03);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  }
+
+  .codeblock {
+    background:rgba(0,0,0,0.55);
+    border:1px solid rgba(0,246,198,0.06);
+    padding:14px;
+    border-radius:8px;
+    font-family:"JetBrains Mono",monospace;
+    color:var(--neon);
+    font-size:14px;
+    line-height:1.6;
+    white-space:pre-wrap;
+  }
+
+  .actions {
+    display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;
+  }
+  .btn {
+    appearance:none;border:0;padding:10px 14px;border-radius:10px;
+    background:linear-gradient(180deg,var(--neon),#14caa0);
+    color:#041014;font-weight:700;cursor:pointer;font-family:"Orbitron",sans-serif;
+    box-shadow: 0 6px 18px rgba(0,246,198,0.12);
+    transition:transform .14s ease, box-shadow .14s;
+  }
+  .btn:active{transform:translateY(2px)}
+  .ghost {
+    background:transparent;color:var(--muted);border:1px solid rgba(155,238,214,0.06);
+    font-weight:600;
+  }
+
+  /* animated scanning overlay */
+  .scan {
+    position:absolute;inset:0;pointer-events:none;
+    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.02) 45%, rgba(255,255,255,0.03) 50%, rgba(255,255,255,0.02) 55%, rgba(255,255,255,0) 100%);
+    transform:translateY(-100%); animation: scan 6s linear infinite;
+    mix-blend-mode:overlay; opacity:0.6;
+  }
+  @keyframes scan{0%{transform:translateY(-120%)}100%{transform:translateY(120%)}}
+
+  /* footer small */
+  .hint { font-size:12px;color:rgba(155,238,214,0.5);margin-top:10px}
+
+  /* responsiveness */
+  @media (max-width:700px){
+    .body{flex-direction:column}
+    .logo{width:48px;height:48px}
+    .topbar{gap:10px}
+  }
 </style>
 </head>
 <body>
-  <div class="terminal">
-    <h1>403 Forbidden</h1>
-    <p>Server or website configuration is blocking you from viewing this page.</p>
-    <p>If you just came across this page, please carry on.<br>
-       If you are the website owner, please try to troubleshoot.<br>
-       Please contact the system administrator for extra measures.</p>
-    <button onclick="window.location.href='/'">Go Home</button>
-    <p class="blink"></p>
+  <div class="shell" role="main" aria-labelledby="h403">
+    <div class="scan" aria-hidden="true"></div>
+
+    <div class="topbar">
+      <div class="logo">TY</div>
+      <div class="meta">
+        <div class="title">403 — FORBIDDEN</div>
+        <div class="sub">Server or website configuration is blocking you from viewing this page</div>
+      </div>
+    </div>
+
+    <div class="body">
+      <div class="panel">
+        <div class="codeblock">
+403 Forbidden
+Server or website configuration is blocking you from viewing this page.
+
+If you just came across this page, please carry on.
+If you are the website owner, please try to troubleshoot.
+Please contact the system administrator for extra measures.
+        </div>
+
+        <div class="actions">
+          <button class="btn" onclick="location.href='index.html'">→ Projects / Home</button>
+          <button class="btn ghost" onclick="copyText()">Copy server hint</button>
+        </div>
+        <div class="hint">Tip: copying the message helps when filing a bug to your admin.</div>
+      </div>
+
+      <div class="panel" aria-hidden="false">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font-weight:700;color:var(--accent);font-family:'Orbitron',sans-serif">Connection</div>
+          <div style="font-size:13px;color:rgba(155,238,214,0.8)">IP: <span id="ip">unknown</span></div>
+          <div style="font-size:13px;color:rgba(155,238,214,0.8)">Agent: <span id="agent">detecting...</span></div>
+
+          <div style="margin-top:12px">
+            <div style="font-weight:700;color:var(--accent);font-family:'Orbitron',sans-serif">Quick actions</div>
+            <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+              <button class="btn ghost" onclick="report()">Report to Admin</button>
+              <button class="btn ghost" onclick="reload()">Try Again</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
+
+<script>
+  // small inline behaviors — no external scripts
+  function copyText(){
+    const t = `403 Forbidden — server blocked access.`;
+    navigator.clipboard?.writeText(t).then(()=>alert('Copied hint to clipboard.'));
+  }
+  function reload(){ location.reload(); }
+  function report(){ location.href = 'mailto:admin@yourdomain.tld?subject=403%20access%20report'; }
+
+  // show user agent and simple IP hint (best-effort)
+  document.getElementById('agent').textContent = navigator.userAgent || 'unknown';
+  // optional fetch to a free ip service is avoided (no external); show placeholder
+  document.getElementById('ip').textContent = 'client (private)';
+</script>
 </body>
 </html>
