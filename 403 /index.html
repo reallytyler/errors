@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>403 Forbidden</title>
+<style>
+  body {
+    background-color: #020202;
+    color: #00ffc6;
+    font-family: "JetBrains Mono", monospace;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .terminal {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #00ffc6;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #00ffc6;
+    width: 80%;
+    max-width: 600px;
+  }
+  h1 {
+    font-size: 3rem;
+    text-shadow: 0 0 10px #00ffc6;
+  }
+  p {
+    margin: 1rem 0;
+  }
+  .blink::after {
+    content: "_";
+    animation: blink 1s infinite;
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+  button {
+    margin-top: 1rem;
+    background: #00ffc6;
+    color: #000;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  button:hover { background: #00a582; }
+</style>
+</head>
+<body>
+  <div class="terminal">
+    <h1>403 Forbidden</h1>
+    <p>Server or website configuration is blocking you from viewing this page.</p>
+    <p>If you just came across this page, please carry on.<br>
+       If you are the website owner, please try to troubleshoot.<br>
+       Please contact the system administrator for extra measures.</p>
+    <button onclick="window.location.href='/'">Go Home</button>
+    <p class="blink"></p>
+  </div>
+</body>
+</html>
