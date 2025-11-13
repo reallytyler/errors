@@ -1,80 +1,125 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>404 Not Found</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>404 — Not Found</title>
 <style>
-  body {
-    background: #0d0d0d;
-    color: #fff;
-    font-family: 'Inter', sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    overflow: hidden;
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Mono&display=swap');
+  :root{
+    --bg:#05030a;
+    --glitch1:#ff3b6b;
+    --glitch2:#00f0ff;
+    --muted:#d6f7f6;
+    --card:#071018;
   }
-  .glitch {
-    font-size: 6rem;
-    font-weight: 900;
-    position: relative;
-    color: #fff;
+  html,body{height:100%}
+  body{
+    margin:0;
+    background:
+      radial-gradient(800px 400px at 10% 10%, rgba(255,59,107,0.03), transparent),
+      linear-gradient(180deg,#03060b 0%, #05030a 100%);
+    color:var(--muted);
+    font-family: "Space Mono", monospace;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
   }
-  .glitch::before, .glitch::after {
-    content: "404";
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0.8;
+
+  .wrap{width:min(980px,94%);text-align:center;padding:30px;border-radius:14px;position:relative}
+
+  .big {
+    font-family:"Orbitron",sans-serif;
+    font-size:120px; line-height:0.85;
+    position:relative;color:#fff;text-transform:uppercase;
+    letter-spacing:4px;text-shadow: 0 6px 30px rgba(0,0,0,0.8);
   }
-  .glitch::before {
-    color: #f00;
-    transform: translate(-2px, 2px);
-    animation: glitch 0.3s infinite;
+
+  /* glitch layers */
+  .big::before, .big::after{
+    content:"404";
+    position:absolute;left:0;top:0;width:100%;
+    clip-path: inset(0 0 0 0);
+    opacity:0.85;
   }
-  .glitch::after {
-    color: #0ff;
-    transform: translate(2px, -2px);
-    animation: glitch 0.3s infinite reverse;
+  .big::before{ color:var(--glitch1); transform:translate(-6px, -4px) skew(-3deg); mix-blend-mode:screen; animation:gl1 2.8s infinite; }
+  .big::after{ color:var(--glitch2); transform:translate(6px, 4px) skew(3deg); mix-blend-mode:screen; animation:gl2 3.1s infinite; }
+
+  @keyframes gl1{
+    0%{clip-path:inset(0 0 0 0)}
+    10%{clip-path:inset(10% 0 70% 0)}
+    20%{clip-path:inset(50% 0 20% 0)}
+    30%{clip-path:inset(5% 0 80% 0)}
+    40%{clip-path:inset(0 0 0 0)}
   }
-  @keyframes glitch {
-    0% { clip-path: inset(0 0 90% 0); }
-    20% { clip-path: inset(10% 0 80% 0); }
-    40% { clip-path: inset(40% 0 40% 0); }
-    60% { clip-path: inset(80% 0 10% 0); }
-    100% { clip-path: inset(0 0 90% 0); }
+  @keyframes gl2{
+    0%{clip-path:inset(0 0 0 0)}
+    15%{clip-path:inset(40% 0 20% 0)}
+    35%{clip-path:inset(10% 0 60% 0)}
+    60%{clip-path:inset(0 0 0 0)}
   }
-  .text {
-    text-align: center;
-    max-width: 600px;
+
+  .card {
+    margin-top:8px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.04);
+    padding:20px;border-radius:12px;
+    box-shadow: 0 18px 60px rgba(0,0,0,0.65), 0 0 40px rgba(0,240,255,0.02) inset;
   }
-  p {
-    color: #ccc;
-    margin-top: 20px;
-    font-size: 1.1rem;
+
+  .desc { color: #bfeef3; font-size:16px; margin:10px 0 16px; }
+  .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn{
+    background:transparent;border:1px solid rgba(191,238,243,0.08);padding:10px 14px;border-radius:10px;
+    color:var(--muted);cursor:pointer;font-weight:700;font-family:"Orbitron",sans-serif;
   }
-  button {
-    margin-top: 1.5rem;
-    background: #fff;
-    color: #000;
-    border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
+  .btn.primary{
+    background:linear-gradient(90deg,#ff3b6b,#00f0ff);color:#081018;border:0;box-shadow:0 8px 30px rgba(0,0,0,0.6);
   }
-  button:hover { background: #0ff; color: #000; }
+
+  .scanlines{
+    position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px);
+    background-size:100% 6px;mix-blend-mode:overlay;opacity:0.35;
+  }
+
+  footer{margin-top:18px;font-size:12px;color:rgba(191,238,243,0.45)}
+
+  @media (max-width:640px){
+    .big{font-size:72px}
+    .card{padding:14px}
+  }
 </style>
 </head>
 <body>
-  <div class="text">
-    <div class="glitch">404</div>
-    <p>The page you were looking for could not be found!</p>
-    <p>If you just came across this page, please carry on.<br>
-       If you are the website owner, please try to troubleshoot.<br>
-       Please contact the system administrator for extra measures.</p>
-    <button onclick="window.location.href='/'">Return Home</button>
+  <div class="wrap" role="main" aria-labelledby="h404">
+    <div class="big" id="h404">404</div>
+
+    <div class="card" role="region" aria-label="404 message">
+      <div class="desc">
+        The page you were looking for could not be found!
+        If you just came across this page, please carry on.
+        If you are the website owner, please try to troubleshoot.
+        Please contact the system administrator for extra measures.
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" onclick="location.href='index.html'">Take me home — Projects</button>
+        <button class="btn" onclick="searchSite()">Search site</button>
+        <button class="btn" onclick="report404()">Report</button>
+      </div>
+      <footer>Nothing here. System scanned — no match.</footer>
+    </div>
+
+    <div class="scanlines" aria-hidden="true"></div>
   </div>
+
+<script>
+  function searchSite(){
+    const q = prompt('Quick search (site):','');
+    if(q!==null && q.trim()!=='') window.location.href = 'https://www.google.com/search?q='+encodeURIComponent(q+' site:'+location.hostname);
+  }
+  function report404(){
+    location.href = 'mailto:nottylerxddd@gmail.com?subject=404%20report&body=I%20found%20a%20404%20on%20'+encodeURIComponent(location.href);
+  }
+</script>
 </body>
 </html>
