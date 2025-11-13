@@ -1,0 +1,79 @@
+# ============================================
+# 🧩 Tyler's Modern Error Pages (.gitignore)
+# ============================================
+
+# OS / System Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Node / Build Tools (if used later)
+node_modules/
+dist/
+build/
+.cache/
+.temp/
+*.lock
+*.bak
+*.tmp
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# GitHub Pages Cache
+.jekyll-cache/
+_site/
+Gemfile.lock
+
+# Environment / Config Files
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Backups
+*~
+*.old
+*.backup
+*.orig
+
+# Deployment / Preview
+.vercel/
+.netlify/
+out/
+public/
+
+# =====================
+# Custom Project Rules
+# =====================
+
+# Ignore personal scripts or drafts
+test/
+drafts/
+sandbox/
+old/
+private/
+
+# Keep only actual error pages and docs
+!403/
+!404/
+!500/
+!README.md
+!.gitignore
+
+# ============================================
+# End of File
+# ============================================
