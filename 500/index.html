@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>500 Internal Server Error</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: black;
+    color: #00ff00;
+    font-family: "Courier New", monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+  }
+  canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  h1 {
+    font-size: 3rem;
+    text-shadow: 0 0 10px #00ff00;
+  }
+  p {
+    text-align: center;
+    color: #aaffaa;
+    max-width: 600px;
+  }
+  button {
+    margin-top: 1.5rem;
+    background: #00ff00;
+    color: #000;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  button:hover { background: #00cc00; }
+</style>
+</head>
+<body>
+<canvas id="matrix"></canvas>
+<h1>500 Internal Server Error</h1>
+<p>Something on the website crashed!<br>
+If you just came across this page, please carry on.<br>
+If you are the website owner, please try to troubleshoot.<br>
+Please contact the system administrator for extra measures.</p>
+<button onclick="window.location.href='/'">Reload Site</button>
+<script>
+const c = document.getElementById("matrix");
+const ctx = c.getContext("2d");
+c.height = window.innerHeight;
+c.width = window.innerWidth;
+const chars = "01";
+const font_size = 14;
+const columns = c.width / font_size;
+const drops = Array(Math.floor(columns)).fill(1);
+function draw() {
+  ctx.fillStyle = "rgba(0,0,0,0.1)";
+  ctx.fillRect(0, 0, c.width, c.height);
+  ctx.fillStyle = "#0F0";
+  ctx.font = font_size + "px monospace";
+  for (let i = 0; i < drops.length; i++) {
+    const text = chars.charAt(Math.floor(Math.random() * chars.length));
+    ctx.fillText(text, i * font_size, drops[i] * font_size);
+    if (drops[i] * font_size > c.height && Math.random() > 0.975) drops[i] = 0;
+    drops[i]++;
+  }
+}
+setInterval(draw, 35);
+</script>
+</body>
+</html>
